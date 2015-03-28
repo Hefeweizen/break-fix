@@ -1,0 +1,5 @@
+../../scripts/a
+../../scripts/b
+../../scripts/c
+../../scripts/d
+../../scripts/e
