@@ -37,7 +37,6 @@ OptionParser.new do |opts|
 
 end.parse!
 
-raise ArgumentError, "File #{options[:file]} not found" if ! File.exist?(options[:file])
 if options[:help]
   exit
 end
@@ -55,6 +54,8 @@ def self.run_script(script, dry_run=false, verbose=false)
 end
 
 def self.read_input_file(input_file)
+  raise ArgumentError, "File #{input_file} not found" if ! File.exist?(input_file)
+
   file_array = []
   File.open(input_file, "r").each_line do |line|
     line.chomp!
