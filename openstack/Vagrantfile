@@ -29,5 +29,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # provide convenience scripts
   config.vm.synced_folder "../common/bin", "/usr/local/bin", type: "rsync",
-    rsync__args: ["--verbose", "--rsync-path='sudo rsync'", "--archive", "--delete", "-z"]
+    rsync__args: ["--verbose", "--rsync-path='sudo rsync'", "--archive", "-z"]
 end
