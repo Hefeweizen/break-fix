@@ -73,5 +73,17 @@ def self.read_input_file(input_file)
   return file_array
 end
 
-choices = read_input_file(options[:file])
+def self.read_default_script_location()
+  file_array = []
+  Dir.glob("/vagrant/scripts/*") do |script|
+    file_array << script
+  end
+  return file_array
+end
+
+choices = case
+  when options[:file] then read_input_file(options[:file])
+  else read_default_script_location
+end
+
 run_script(choices.sample, options[:dry_run], options[:verbose])
