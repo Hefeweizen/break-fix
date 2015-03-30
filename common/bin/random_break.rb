@@ -42,10 +42,11 @@ if options[:help]
   exit
 end
 
-def self.run_script(script, dry_run=false)
-  if dry_run
+def self.run_script(script, dry_run=false, verbose=false)
+  if dry_run || verbose
     puts script
-  else
+  end
+  if !dry_run
     puts `#{script}`
   end
 end
@@ -65,5 +66,4 @@ File.open(options[:file], "r").each_line do |line|
     file_array << line
   end
 end
-run_script(file_array.sample, options[:dry_run])
-
+run_script(file_array.sample, options[:dry_run], options[:verbose])
