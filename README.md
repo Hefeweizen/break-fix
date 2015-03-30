@@ -22,3 +22,11 @@ While you can work on this solo, consider inviting someone along for the ride.  
     ├── break01.sh
     └── break02.sh
 ```
+
+## FAQ
+
+1. We could distribute a box that starts out broken, without evidence of how it got that way?
+  * I want the vagrant file to be clean.  A person should always start from a known good point.  This allows a couple things:
+  1. study in advance - the student gets a good understanding of what a working environment is like
+  1. if they fubar an environment - vagrant destroy, vagrant up gets them back to a known good point
+  1. we only have to write break scripts, not fix scripts as well. - it's easier to write breaks than fixes.
