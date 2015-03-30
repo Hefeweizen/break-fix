@@ -43,7 +43,7 @@ if options[:help]
 end
 
 def self.run_script(script, dry_run=false, verbose=false)
-  if dry_run || verbose
+  if dry_run or verbose
     puts script
   end
   if !dry_run
