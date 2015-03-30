@@ -4,7 +4,8 @@
 #
 INSTALL_DIR=/opt/devstack
 LOCAL_CONF=${INSTALL_DIR}/local.conf
-USER=ubuntu
+USER=vagrant
+ADMIN_PASSWORD=stack448
 
 # System prep
 apt-get install -y git screen vim apache2 memcached
@@ -20,7 +21,7 @@ su -l ${USER} -c 'git clone https://github.com/openstack-dev/devstack.git -b sta
 # Write local.conf
 cat <<EOF >> ${LOCAL_CONF}
 [[local|localrc]]
-ADMIN_PASSWORD=stack448
+ADMIN_PASSWORD=$ADMIN_PASSWORD
 DATABASE_PASSWORD=$ADMIN_PASSWORD
 RABBIT_PASSWORD=$ADMIN_PASSWORD
 SERVICE_PASSWORD=$ADMIN_PASSWORD
