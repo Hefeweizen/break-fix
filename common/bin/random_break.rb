@@ -54,19 +54,24 @@ def self.run_script(script, dry_run=false, verbose=false)
   end
 end
 
-file_array = []
-File.open(options[:file], "r").each_line do |line|
-  line.chomp!
-  if ! File.exists?(line)
-    puts "ERROR: The given directory #{line} was not present, skipping."
-    next
-  end
-  if File.directory?(line)
-    Dir.glob("#{line}/*.sh") do |script|
-      file_array << script
+def self.read_input_file(input_file)
+  file_array = []
+  File.open(input_file, "r").each_line do |line|
+    line.chomp!
+    if ! File.exists?(line)
+      puts "ERROR: The given directory #{line} was not present, skipping."
+      next
     end
-  else
-    file_array << line
+    if File.directory?(line)
+      Dir.glob("#{line}/*.sh") do |script|
+        file_array << script
+      end
+    else
+      file_array << line
+    end
   end
+  return file_array
 end
-run_script(file_array.sample, options[:dry_run], options[:verbose])
+
+choices = read_input_file(options[:file])
+run_script(choices.sample, options[:dry_run], options[:verbose])
